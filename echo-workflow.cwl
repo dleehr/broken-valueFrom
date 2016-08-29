@@ -5,7 +5,10 @@ requirements:
   - class: StepInputExpressionRequirement
 inputs:
   scattered_messages: string[]
-outputs: []
+outputs:
+  out_message:
+    type: File[]
+    outputSource: step1/out_message
 steps:
   step1:
     run: echo-tool.cwl
@@ -15,4 +18,4 @@ steps:
       scattered_message: scattered_messages
       message:
         valueFrom: "Hello"
-    out: []
+    out: [out_message]

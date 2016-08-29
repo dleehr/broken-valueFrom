@@ -9,5 +9,7 @@ inputs:
     type: string
     inputBinding:
       position: 1
-outputs: []
+outputs:
+  out_message:
+    type: stdout
 baseCommand: echo
