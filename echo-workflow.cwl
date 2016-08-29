@@ -1,23 +1,18 @@
-cwlVersion: cwl:draft-3
+cwlVersion: v1.0
 class: Workflow
 requirements:
   - class: ScatterFeatureRequirement
   - class: StepInputExpressionRequirement
 inputs:
-  - id: "scattered_messages"
-    type:
-      type: array
-      items: string
+  scattered_messages: string[]
 outputs: []
 steps:
-  - id: "#step1"
-    run: {$import: "echo-tool.cwl"}
-    scatter:
-      - "#step1.scattered_message"
+  step1:
+    run: echo-tool.cwl
+    scatter: [scattered_message]
     scatterMethod: dotproduct
-    inputs:
-      - id: "#step1.scattered_message"
-        source: "#scattered_messages"
-      - id: "#step1.message"
-        valueFrom: "hello from the workflow"
-    outputs: []
+    in:
+      scattered_message: scattered_messages
+      message:
+        valueFrom: "Hello"
+    out: []
